@@ -14,8 +14,8 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       assert_equal "hello.png", attachable[:filename]
 
       image = MiniMagick::Image.read(attachable[:io])
-      assert_equal 1088, image.width
-      assert_equal 1408, image.height
+      assert_operator image.width, :>, 500
+      assert_operator image.height, :>, 500
       assert_equal "image/png", image.mime_type
     end
   end
@@ -30,8 +30,8 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       assert_equal "hello.png", attachable[:filename]
 
       image = MiniMagick::Image.read(attachable[:io])
-      assert_equal 1820, image.width
-      assert_equal 1365, image.height
+      assert_operator image.width, :>, 500
+      assert_operator image.height, :>, 500
       assert_equal "image/png", image.mime_type
     end
   end
@@ -46,8 +46,8 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       assert_equal "hello.png", attachable[:filename]
 
       image = MiniMagick::Image.read(attachable[:io])
-      assert_equal 1088, image.width
-      assert_equal 1408, image.height
+      assert_operator image.width, :>, 500
+      assert_operator image.height, :>, 500
       assert_equal "image/png", image.mime_type
     end
   end
