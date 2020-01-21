@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activestorage-office-previewer (0.1.1)
+    activestorage-office-previewer (0.1.2)
       activestorage (>= 6.0.0)
 
 GEM
