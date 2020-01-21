@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "activestorage", ">= 6.0.0"
 
-  s.add_development_dependency "bundler", "~> 1.17"
+  s.add_development_dependency "appraisal", "~> 2.2"
+
   s.add_development_dependency "rake", "~> 13.0.0"
   s.add_development_dependency "minitest", "~> 5.13.0"
   s.add_development_dependency "mini_magick", "~> 4.9.5"

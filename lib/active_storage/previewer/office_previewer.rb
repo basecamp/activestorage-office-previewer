@@ -30,10 +30,10 @@ class ActiveStorage::Previewer::OfficePreviewer < ActiveStorage::Previewer
     end
   end
 
-  def preview
+  def preview(**options)
     download_blob_to_tempfile do |input|
       draw_poster_image_from input do |output|
-        yield io: output, filename: "#{blob.filename.base}.png", content_type: "image/png"
+        yield io: output, filename: "#{blob.filename.base}.png", content_type: "image/png", **options
       end
     end
   end
