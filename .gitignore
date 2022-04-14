@@ -1,5 +1,0 @@
-*.gem
-.byebug_history
-
-gemfiles/*.lock
-gemfiles/.bundle
