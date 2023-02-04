@@ -18,11 +18,9 @@ class ActiveStorage::Previewer::OfficePreviewer < ActiveStorage::Previewer
     end
 
     def soffice_exists?
-      if @soffice_exists.nil?
-        @soffice_exists = system(soffice_path, "--version", out: File::NULL, err: File::NULL)
-      else
-        @soffice_exists
-      end
+      return @soffice_exists if defined?(@soffice_exists)
+
+      @soffice_exists = system(soffice_path, "--version", out: File::NULL, err: File::NULL)
     end
 
     def soffice_path
