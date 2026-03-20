@@ -1,7 +1,8 @@
 require "test_helper"
 require "database/setup"
 
-require "mini_magick"
+require "vips"
+require "marcel"
 
 class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
   test "previewing a Word document" do
@@ -13,10 +14,10 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       assert_equal "image/png", attachable[:content_type]
       assert_equal "hello.png", attachable[:filename]
 
-      image = MiniMagick::Image.read(attachable[:io])
+      image = Vips::Image.new_from_buffer(attachable[:io].read, "")
       assert_operator image.width, :>, 500
       assert_operator image.height, :>, 500
-      assert_equal "image/png", image.mime_type
+      assert_equal "image/png", Marcel::MimeType.for(attachable[:io].tap(&:rewind))
     end
   end
 
@@ -29,10 +30,10 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       assert_equal "image/png", attachable[:content_type]
       assert_equal "hello.png", attachable[:filename]
 
-      image = MiniMagick::Image.read(attachable[:io])
+      image = Vips::Image.new_from_buffer(attachable[:io].read, "")
       assert_operator image.width, :>, 500
       assert_operator image.height, :>, 500
-      assert_equal "image/png", image.mime_type
+      assert_equal "image/png", Marcel::MimeType.for(attachable[:io].tap(&:rewind))
     end
   end
 
@@ -45,10 +46,10 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       assert_equal "image/png", attachable[:content_type]
       assert_equal "hello.png", attachable[:filename]
 
-      image = MiniMagick::Image.read(attachable[:io])
+      image = Vips::Image.new_from_buffer(attachable[:io].read, "")
       assert_operator image.width, :>, 500
       assert_operator image.height, :>, 500
-      assert_equal "image/png", image.mime_type
+      assert_equal "image/png", Marcel::MimeType.for(attachable[:io].tap(&:rewind))
     end
   end
 end

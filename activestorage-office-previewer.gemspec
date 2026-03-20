@@ -18,8 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rake", "~> 13.0"
   s.add_development_dependency "minitest", "~> 5.0"
-  s.add_development_dependency "benchmark"
-  s.add_development_dependency "mini_magick", "~> 4.9"
+  s.add_development_dependency "ruby-vips"
   s.add_development_dependency "sqlite3"
 
   s.add_development_dependency "rails", ">= 7.2.0"
