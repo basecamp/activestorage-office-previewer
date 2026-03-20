@@ -1,8 +1,7 @@
-appraise "rails_6.0" do
-  gem "rails", "~> 6.0.0"
+appraise "rails_8.1" do
+  gem "rails", "~> 8.1.0"
 end
 
-appraise "rails_master" do
-  git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-  gem "rails", github: "rails/rails"
+appraise "rails_main" do
+  gem "rails", github: "rails/rails", branch: "main"
 end
