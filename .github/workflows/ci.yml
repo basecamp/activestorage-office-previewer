@@ -6,28 +6,27 @@ jobs:
 
     strategy:
       matrix:
+        ruby: ["3.4", "4.0"]
         gemfile:
-          - gemfiles/rails_6.0.gemfile
-          - gemfiles/rails_master.gemfile
+          - gemfiles/rails_8.1.gemfile
+          - gemfiles/rails_main.gemfile
 
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.x
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
 
-      - name: Install dependencies
+      - name: Install LibreOffice
         run: |
           sudo apt-get update
-          sudo apt-get install libreoffice libsqlite3-dev
-
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+          sudo apt-get install -y libreoffice libvips
 
       - name: Run tests
         run: bundle exec rake test
