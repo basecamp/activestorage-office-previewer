@@ -1,0 +1,25 @@
+activestorage-office-previewer.gemspec
+  s_489947fdcc1213::t_8566ca55fff039 3
+lib/active_storage/previewer/office_previewer.rb
+  s_489947fdcc1213::t_fadc2e90c86ee9 2,16-38,47,53-57,70-89
+test/office_previewer_test.rb
+  s_489947fdcc1213::t_9f2c84f4ebd472 60-215
+  s_489947fdcc1213::t_37ba9061f20379 7
+  s_489947fdcc1213::t_18b946cc23cb4b 6,8-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "8f59233af986ab3717a96aae6edf0bccfbef8834",
+  "prompts": {},
+  "sessions": {
+    "s_489947fdcc1213": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e20ed24d-55c2-42ed-8e77-e35502be4305",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Jeremy Daer <jeremy@37signals.com>"
+    }
+  }
+}
