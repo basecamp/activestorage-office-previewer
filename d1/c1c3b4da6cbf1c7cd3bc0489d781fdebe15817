@@ -1,0 +1,25 @@
+test/office_previewer_test.rb
+  s_2216ed005a81d3::t_01ab9d5caa4421 84
+lib/active_storage/previewer/office_previewer.rb
+  s_2216ed005a81d3::t_16e365a7d7e2df 26-31,35-40,44-47
+  s_2216ed005a81d3::t_3f523ebd8d958f 32-34
+README.md
+  s_2216ed005a81d3::t_edb0bf59aefe05 20-21,23,25,28,30
+  s_2216ed005a81d3::t_afa67905e65a57 22,24,26-27,29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "d1c1c3b4da6cbf1c7cd3bc0489d781fdebe15817",
+  "prompts": {},
+  "sessions": {
+    "s_2216ed005a81d3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c87b6fa3-96c2-4cca-ae69-b233eafc72a7",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Jeremy Daer <jeremy@37signals.com>"
+    }
+  }
+}
