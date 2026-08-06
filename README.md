@@ -17,6 +17,17 @@ gem "activestorage-office-previewer"
 
 Generate previews of Microsoft Office files using Active Storage’s [preview feature](https://guides.rubyonrails.org/active_storage_overview.html#previewing-files).
 
+## Security
+
+This gem converts documents that your users upload. Document conversion is a high-risk operation. LibreOffice is a large application with a wide feature set.
+
+Version 0.1.3 adds two defense-in-depth layers:
+
+* **An environment allowlist.** The gem starts `soffice` with a minimal environment. Application secrets in the host environment do not reach the `soffice` process.
+* **A throwaway user profile.** Each conversion uses a new LibreOffice profile. The profile refuses active content and externally linked resources.
+
+**Isolate the converter.** These two layers reduce risk. They do not replace process isolation. Run LibreOffice with no access to the host filesystem, no access to host process data, and no access to your secrets. Use a container, a dedicated user account, or a namespace.
+
 ## License
 
 This gem is released under the terms of the MIT license.

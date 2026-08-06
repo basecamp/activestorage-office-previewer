@@ -81,7 +81,7 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
       end
     end
   ensure
-    capture.close!
+    capture&.close!
   end
 
   # Regression for the local-file-disclosure vulnerability: a document may reference

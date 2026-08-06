@@ -23,16 +23,28 @@ class ActiveStorage::Previewer::OfficePreviewer < ActiveStorage::Previewer
     PATH HOME LANG LANGUAGE LC_ALL LC_CTYPE LC_MESSAGES LC_NUMERIC TMPDIR TMP TEMP USER LOGNAME
   ]
 
-  # Seeded into a throwaway LibreOffice user profile for every conversion. It turns
-  # off "active content", LibreOffice's term for externally linked media and OLE
-  # objects. Without it a document may reference a local file with a link such as
-  # <a:blip r:link="..."> or <draw:image xlink:href="file:///..."> and LibreOffice
-  # will read that file off the server's disk and paint it into the preview,
-  # disclosing arbitrary local files to whoever uploaded the document.
+  # Seeded into a throwaway LibreOffice user profile for every conversion.
+  #
+  # DisableActiveContent turns off "active content" — LibreOffice's term for OLE and
+  # DDE objects and other embedded executable content.
+  #
+  # BlockUntrustedRefererLinks refuses externally linked resources. Without it a
+  # document may reference a file by link and LibreOffice resolves that reference
+  # during conversion. The regression test in test/office_previewer_test.rb covers
+  # this path. Do not remove either key without re-running that test.
+  #
+  # Both keys are set deliberately. The measured drop in rendered ink (0.0965 to
+  # 0.0047 on LibreOffice 24.2.7.2) was obtained with DisableActiveContent alone, so
+  # that is the key the measurement exercises. BlockUntrustedRefererLinks is set as
+  # well because it is the documented lever for linked resources, and relying on a
+  # single observed behaviour across LibreOffice versions is not worth the risk.
   REGISTRY_MODIFICATIONS = <<~XCU
     <?xml version="1.0" encoding="UTF-8"?>
     <oor:items xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-     <item oor:path="/org.openoffice.Office.Common/Security/Scripting"><prop oor:name="DisableActiveContent" oor:op="fuse"><value>true</value></prop></item>
+     <item oor:path="/org.openoffice.Office.Common/Security/Scripting">
+      <prop oor:name="DisableActiveContent" oor:op="fuse"><value>true</value></prop>
+      <prop oor:name="BlockUntrustedRefererLinks" oor:op="fuse"><value>true</value></prop>
+     </item>
     </oor:items>
   XCU
 
