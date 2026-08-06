@@ -9,8 +9,10 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 3.2.0"
 
-  s.files      = `git ls-files`.split("\n")
-  s.test_files = `git ls-files -- test/*`.split("\n")
+  # Ship the library and its licence, and nothing else. The test suite carries
+  # documents built to exercise the previewer's handling of hostile input, and a
+  # published gem is the wrong place for them: nobody needs them at install time.
+  s.files = `git ls-files -- lib README.md LICENSE.md`.split("\n")
 
   s.add_dependency "activestorage", ">= 7.2.0"
 
