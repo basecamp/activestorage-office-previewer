@@ -1,0 +1,29 @@
+test/office_previewer_test.rb
+  s_2216ed005a81d3::t_ec18ba31e3cc28 190-211,225
+  s_2216ed005a81d3::t_6cb04098b2bd18 63-185,220,222
+  s_2216ed005a81d3::t_363780465ebdf7 6-8,58-62,186-189,212-219,221,223-224
+Gemfile.lock
+  s_2216ed005a81d3::t_537bf3655b14ce 4
+README.md
+  s_2216ed005a81d3::t_7a7fc2843bcd79 20-30
+activestorage-office-previewer.gemspec
+  s_2216ed005a81d3::t_b0f7d869d18a09 3
+lib/active_storage/previewer/office_previewer.rb
+  s_2216ed005a81d3::t_de4a3b4df65ec3 2-3,17-51,60,66-70,83-111
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "9092130e5aee84cd26bfff351d457a71d6ad4757",
+  "prompts": {},
+  "sessions": {
+    "s_2216ed005a81d3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c87b6fa3-96c2-4cca-ae69-b233eafc72a7",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Jeremy Daer <jeremy@37signals.com>"
+    }
+  }
+}
