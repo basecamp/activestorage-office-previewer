@@ -1,5 +1,6 @@
 require "active_storage/previewer"
 require "tmpdir"
+require "uri"
 
 class ActiveStorage::Previewer::OfficePreviewer < ActiveStorage::Previewer
   ACCEPTABLE_CONTENT_TYPES = [
@@ -83,7 +84,7 @@ class ActiveStorage::Previewer::OfficePreviewer < ActiveStorage::Previewer
         seed_libreoffice_profile profile
 
         system self.class.scrubbed_env, soffice_path,
-          "-env:UserInstallation=file://#{profile}",
+          "-env:UserInstallation=#{profile_url(profile)}",
           "--headless", "--invisible", "--convert-to", "png",
           "--outdir", tmpdir, file.path,
           out: File::NULL, err: File::NULL, unsetenv_others: true
@@ -99,6 +100,15 @@ class ActiveStorage::Previewer::OfficePreviewer < ActiveStorage::Previewer
       user = File.join(profile, "user")
       Dir.mkdir(user)
       File.write File.join(user, "registrymodifications.xcu"), REGISTRY_MODIFICATIONS
+    end
+
+    # -env:UserInstallation takes a URL, not a path. Dir.tmpdir honours TMPDIR, which
+    # can hold a space or a "#" — on macOS it is under /var/folders by default — and
+    # appending such a path raw yields a URL LibreOffice resolves somewhere else. It
+    # would then run against an unseeded profile and quietly drop the settings above,
+    # so percent-encode everything outside the unreserved set.
+    def profile_url(profile)
+      "file://#{URI::DEFAULT_PARSER.escape(profile, /[^A-Za-z0-9\-_.~\/]/)}"
     end
 
     def consume(path, &block)

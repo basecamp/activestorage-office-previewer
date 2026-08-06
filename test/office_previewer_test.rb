@@ -109,6 +109,19 @@ class ActiveStorage::Previewer::OfficePreviewerTest < ActiveSupport::TestCase
     target&.close!
   end
 
+  # A profile path that lands somewhere else is worse than no profile at all: the
+  # conversion still runs, but against an unseeded profile, so the settings above
+  # silently stop applying. Runs without LibreOffice.
+  test "the profile URL percent-encodes characters that are special in a URL" do
+    previewer = ActiveStorage::Previewer::OfficePreviewer.new(
+      create_file_blob(filename: "hello.docx",
+        content_type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
+
+    assert_equal "file:///var/folders/a%20b%23c/office-profile",
+      previewer.send(:profile_url, "/var/folders/a b#c/office-profile")
+    assert_equal "file:///tmp/plain", previewer.send(:profile_url, "/tmp/plain")
+  end
+
   private
     # ---- environment-scrub test scaffolding ----------------------------------
 
