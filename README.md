@@ -21,7 +21,7 @@ Generate previews of Microsoft Office files using Active Storage’s [preview fe
 
 This gem converts documents that your users upload. Document conversion is a high-risk operation. LibreOffice is a large application with a wide feature set.
 
-Version 0.1.3 adds two defense-in-depth layers:
+Version 0.2.0 adds two defense-in-depth layers:
 
 * **An environment allowlist.** The gem starts `soffice` with a minimal environment. Application secrets in the host environment do not reach the `soffice` process.
 * **A throwaway user profile.** Each conversion uses a new LibreOffice profile. The profile refuses active content and externally linked resources.

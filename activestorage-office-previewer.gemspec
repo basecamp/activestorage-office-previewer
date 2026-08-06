@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = "activestorage-office-previewer"
-  s.version  = "0.1.3"
+  s.version  = "0.2.0"
   s.authors  = "George Claghorn"
   s.email    = "george@basecamp.com"
   s.summary  = "Active Storage previewer for Microsoft Office files based on LibreOffice"
